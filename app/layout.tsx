@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Findocalc",
   description: "Findocalc - Collection of personal finance calculators.",
+  icons: {
+    icon: "/favicon.svg"
+  },
 };
 
 export default function RootLayout({

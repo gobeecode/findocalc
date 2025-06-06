@@ -20,11 +20,13 @@ export default function CalculatorsHome() {
   return (
     <div className="w-full">
       <div className="flex flex-col items-center justify-center gap-2 mb-10 bg-sky-700 px-5 py-10 text-white">
-        <Image src={"/finance.svg"} alt="Header image" width={200} height={200} />
+        <div className="flex flex-col items-center justify-center gap-1">
+        <Image src={"./favicon.svg"} alt="Logo image" width={100} height={100} /> 
         <h1 className="text-3xl sm:text-4xl font-bold text-center">
-          Findocalc
+           Findocalc
         </h1>
-        <p className="text-lg text-center">Opensource personal finance calculators developed by <a
+        </div>
+        <p className="text-lg text-center w-1/4">Opensource personal finance calculators developed by <a
           href="http://linkedin.com/in/gobeecode"
           target="_blank"
           rel="noopener noreferrer"
