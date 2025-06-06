@@ -7,19 +7,20 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Slider } from "@/components/ui/slider";
 
 export default function InflationCalculator() {
 
   const router = useRouter();
 
   const [amount, setAmount] = useState(0);
-  const [rate, setRate] = useState(0);
-  const [years, setYears] = useState(0);
+  const [rate, setRate] = useState([6]);
+  const [years, setYears] = useState([10]);
   const [result, setResult] = useState<number | null>(null);
   const [difference, setDifference] = useState<number | null>(null);
 
   const calculate = () => {
-    const inflationAdjusted = amount / Math.pow(1 + rate / 100, years);
+    const inflationAdjusted = amount / Math.pow(1 + rate[0] / 100, years[0]);
     setResult(inflationAdjusted);
     setDifference(inflationAdjusted - amount);
   };
@@ -51,23 +52,20 @@ export default function InflationCalculator() {
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="space-y-2 w-full">
                 <Label htmlFor="rate">Inflation Rate (%)</Label>
-                <Input
-                  id="rate"
-                  type="number"
-                  placeholder="e.g. 6"
-                  className="bg-white dark:bg-zinc-800"
-                  onChange={(e) => setRate(+e.target.value)}
-                />
+                <div className="flex items-center justify-center gap-2">
+                <Slider defaultValue={[12]} max={100} step={1}  value={rate} onValueChange={(val) => setRate(val)}/>
+                  <p className="font-semibold">{rate}%</p>
+                  </div>
+
+
               </div>
               <div className="space-y-2 w-full">
                 <Label htmlFor="years">Duration (Years)</Label>
-                <Input
-                  id="years"
-                  type="number"
-                  placeholder="e.g. 10"
-                  className="bg-white dark:bg-zinc-800"
-                  onChange={(e) => setYears(+e.target.value)}
-                />
+                <div className="flex items-center justify-center gap-2">
+                <Slider defaultValue={[10]} max={100} step={1}  value={years} onValueChange={(val) => setYears(val)}/>
+                  <p className="font-semibold">{years}y</p>
+                  </div>
+
               </div>
             </div>
           </div>
@@ -97,8 +95,11 @@ export default function InflationCalculator() {
                   ₹{result.toFixed(2)}
                 </p>
                 <p>
+                  <span className="font-semibold">Inflation Rate:</span> {rate}{"% "}  
+                </p>
+                <p>
                   <span className="font-semibold">Duration:</span> {years}{" "}
-                  year{years > 1 ? "s" : ""}
+                  year{years[0] > 1 ? "s" : ""}
                 </p>
                 <p>
                   <span className="font-semibold">Difference:</span>{" "}
