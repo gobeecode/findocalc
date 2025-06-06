@@ -70,11 +70,11 @@ export default function SIPCalculator() {
           <div className="flex items-center justify-between">
             <Button
               onClick={() => router.back()}
-              className="rounded-full w-10 h-10 cursor-pointer"
+              className="rounded-full w-10 h-10 cursor-pointer bg-sky-700 hover:bg-sky-800"
             >
               <ArrowLeft />
             </Button>
-            <h2 className="text-2xl font-bold text-center">SIP Calculator</h2>
+            <h2 className="text-2xl font-bold text-center text-sky-700">SIP Calculator</h2>
             <div></div>
           </div>
 

@@ -58,10 +58,10 @@ export default function CAGRCalculator() {
       <div className="w-full md:w-1/2">
         <Card className="w-full p-8">
           <div className="flex items-center justify-between">
-            <Button onClick={() => router.back()} className="rounded-full w-10 h-10 cursor-pointer">
+            <Button onClick={() => router.back()} className="rounded-full w-10 h-10 cursor-pointer bg-sky-700 hover:bg-sky-800">
               <ArrowLeft />
             </Button>
-            <h2 className="text-2xl font-bold text-center">CAGR Calculator</h2>
+            <h2 className="text-2xl font-bold text-center text-sky-700">CAGR Calculator</h2>
             <div></div>
           </div>
 

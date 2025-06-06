@@ -50,10 +50,10 @@ export default function ValueDepreciationCalculator() {
       <div className="w-full md:w-1/2">
         <Card className="w-full p-8">
           <div className="flex items-center justify-between">
-            <Button onClick={() => router.back()} className="rounded-full w-10 h-10 cursor-pointer">
+            <Button onClick={() => router.back()} className="rounded-full w-10 h-10 cursor-pointer bg-sky-700 hover:bg-sky-800">
               <ArrowLeft />
             </Button>
-            <h2 className="text-2xl font-bold text-center">
+            <h2 className="text-2xl font-bold text-center text-sky-700">
               Value Depreciation Calculator
             </h2>
             <div></div>
@@ -76,7 +76,7 @@ export default function ValueDepreciationCalculator() {
               <div className="space-y-2 w-full">
                 <Label htmlFor="rate">Inflation Rate (%)</Label>
                 <div className="flex items-center justify-center gap-2">
-                  <Slider value={rate} max={50} step={0.5} onValueChange={setRate} />
+                  <Slider value={rate} max={50} step={0.5} onValueChange={setRate}/>
                   <p className="font-semibold">{rate[0]}%</p>
                 </div>
               </div>
