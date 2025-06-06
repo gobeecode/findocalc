@@ -19,14 +19,15 @@ const calculators = [
 export default function CalculatorsHome() {
   return (
     <div className="w-full">
-      <div className="flex flex-col items-center justify-center gap-2 mb-10 bg-sky-700 px-5 py-10 text-white">
+      <div className=" flex flex-col items-center justify-center gap-2 bg-sky-700 text-white w-full">
+      <div className=" w-full sm:w-1/2 md:w-1/3 lg:w-1/4 text-center flex flex-col items-center justify-center gap-2 mb-10 px-5 py-10">
         <div className="flex flex-col items-center justify-center gap-1">
         <Image src={"./favicon.svg"} alt="Logo image" width={100} height={100} /> 
         <h1 className="text-3xl sm:text-4xl font-bold text-center">
            Findocalc
         </h1>
         </div>
-        <p className="text-lg text-center w-1/4">Opensource personal finance calculators developed by <a
+        <p className="text-lg text-center">Opensource personal finance calculators developed by <a
           href="http://linkedin.com/in/gobeecode"
           target="_blank"
           rel="noopener noreferrer"
@@ -36,7 +37,7 @@ export default function CalculatorsHome() {
           <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 ease-in-out group-hover:w-full"></span>
         </a>
         </p>
-        <div className="flex gap-4 mt-2">
+        <div className="flex items-center justify-center gap-4 mt-2">
           <a href="https://github.com/gobeecode" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
             <Github className="w-8 h-8 " />
           </a>
@@ -52,6 +53,8 @@ export default function CalculatorsHome() {
           <Button className="cursor-pointer bg-yellow-400 text-gray-800 hover:bg-yellow-400"><Code2Icon /> Support Development</Button>
         </a>
       </div>
+      </div>
+
       <div className="mx-auto px-5">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {calculators.map((calc, idx) => (

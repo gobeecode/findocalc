@@ -147,17 +147,17 @@ export default function GoalBasedInvestmentCalculator() {
                                 )}
                             </div>
                         </div>
-                            <div className="w-full mt-8 h-80">
-                                <ResponsiveContainer>
-                                    <LineChart data={chartData} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
-                                        <CartesianGrid strokeDasharray="3 3" />
-                                        <XAxis dataKey="year" label={{ value: 'Year', position: 'insideBottom', offset: -5 }} />
-                                        <YAxis label={{ value: '₹ Value', angle: -90, position: 'insideLeft' }} />
-                                        <Tooltip formatter={(value: number) => `₹${value.toLocaleString()}`} />
-                                        <Line type="monotone" dataKey="value" stroke="#3b82f6" strokeWidth={3} dot={false} />
-                                    </LineChart>
-                                </ResponsiveContainer>
-                            </div>
+                        <div className="w-full mt-8 h-80">
+                            <ResponsiveContainer>
+                                <LineChart data={chartData} margin={{ top: 20, right: 30, left: 40, bottom: 20 }}>
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="year" label={{ value: 'Year', position: 'insideBottom', offset: -5 }} />
+                                    <YAxis />
+                                    <Tooltip formatter={(value: number) => `₹${value.toLocaleString()}`} />
+                                    <Line type="monotone" dataKey="value" stroke="#3b82f6" strokeWidth={3} dot={false} />
+                                </LineChart>
+                            </ResponsiveContainer>
+                        </div>
                     </>
                 )}
             </div>
