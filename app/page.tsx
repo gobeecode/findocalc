@@ -18,7 +18,7 @@ const calculators = [
 export default function CalculatorsHome() {
   return (
     <div className="w-full">
-      <div className="flex flex-col items-center justify-center gap-2 mb-10 bg-sky-700 py-14 text-white">
+      <div className="flex flex-col items-center justify-center gap-2 mb-10 bg-sky-700 px-2 py-14 text-white">
         <h1 className="text-3xl sm:text-4xl font-bold text-center">
           Findocalc
         </h1>
