@@ -27,8 +27,8 @@ export default function SIPCalculator() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-start w-full h-full p-14">
-      <div className="w-1/2">
+    <div className="flex flex-col items-center justify-center w-full h-full lg:p-14 p-2">
+      <div className="w-full md:w-1/2">
         <Card className="w-full p-8">
         <div className="flex items-center justify-between">
           <Button onClick={() => router.back()} className="rounded-full w-10 h-10 cursor-pointer"><ArrowLeft /></Button>

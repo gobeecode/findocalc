@@ -20,7 +20,7 @@ export default function CalculatorsHome() {
       <h1 className="text-3xl sm:text-4xl font-bold text-center">
         Personal Finance Calculators
       </h1>
-      <h3 className="text-lg">By Gopalakrishnan (@gobeecode)</h3>
+      <h3 className="text-lg text-center">By Gopalakrishnan (@gobeecode)</h3>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {calculators.map((calc, idx) => (
