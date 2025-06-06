@@ -8,9 +8,10 @@ const calculators = [
   { title: "Inflation Calculator", description: "See future inflation adjusted value of the current amount", href: "/calculators/inflation" },
   { title: "Value Depreciation Calculator", description: "Loss of purchasing power over time", href: "/calculators/value-depreciation" },
   { title: "SIP Calculator", description: "Plan your mutual fund SIP returns", href: "/calculators/sip" },
-  // { title: "CAGR Calculator", description: "Compound annual growth rate", href: "/calculators/cagr" },
-  // { title: "Retirement Calculator", description: "Plan how much you need to retire", href: "/calculators/retirement" },
-  // { title: "EMI Calculator", description: "Calculate your monthly loan payments", href: "/calculators/emi" },
+  { title: "EMI Calculator", description: "Calculate your monthly loan payments", href: "/calculators/emi" },
+  { title: "CAGR Calculator", description: "Compound annual growth rate", href: "/calculators/cagr" },
+  { title: "Retirement Calculator", description: "Plan how much you need to retire", href: "/calculators/retirement" },
+  { title: "Goal Based Calculator", description: "Goal based investment", href: "/calculators/goal-based" },
 ];
 
 export default function CalculatorsHome() {
