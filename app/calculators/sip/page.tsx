@@ -1,6 +1,6 @@
 
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -14,18 +14,38 @@ export default function SIPCalculator() {
   const router = useRouter();
 
   const [initialInvestment, setIntialInvestment] = useState(0);
-  const [monthlyInvestment, setMonthlyInvestment] = useState(0);
+  const [monthlyInvestment, setMonthlyInvestment] = useState(1000);
   const [rate, setRate] = useState([12]);
   const [years, setYears] = useState([20]);
   const [returns, setReturns] = useState<number | null>(null);
 
-  function calculate(rate: number, years: number, monthlyContribution: number, initialInvestment: number) {
-    const monthlyRate = rate / 100 / 12;
-    const months = years * 12;
+  function calculate() {
+    const monthlyRate = rate[0] / 100 / 12;
+    const months = years[0] * 12;
     // FV = -(PMT * ((1 + r)^n - 1) / r) - PV * (1 + r)^n
-    const fv = -(monthlyContribution * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate)) - initialInvestment * Math.pow(1 + monthlyRate, months);
+    const fv = -(monthlyInvestment * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate)) - initialInvestment * Math.pow(1 + monthlyRate, months);
     setReturns(-fv);
   }
+
+  const onInitialInvestmentChange = (updatedValue: number) => {
+    setIntialInvestment(updatedValue)
+  }
+
+  const onMonthlyInvestmentChange = (updatedValue: number) => {
+    setMonthlyInvestment(updatedValue)
+  }
+
+  const onRateChange = (updatedValue: number[]) => {
+    setRate(updatedValue)
+  }
+  
+  const onDurationChange = (updatedValue: number[]) => {
+    setYears(updatedValue)
+  }
+
+  useEffect(() => {
+    calculate()
+  }, [initialInvestment, monthlyInvestment, rate, years])
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-full lg:p-14 p-2">
@@ -47,9 +67,10 @@ export default function SIPCalculator() {
               <Input
                 id="initialInvestment"
                 type="number"
-                placeholder="e.g. 100000"
+                placeholder="e.g. 1000"
+                defaultValue={0}
                 className="bg-white dark:bg-zinc-800"
-                onChange={(e) => setIntialInvestment(+e.target.value)}
+                onChange={(e) => onInitialInvestmentChange(+e.target.value)}
               />
             </div>
             <div className="space-y-2 w-full">
@@ -57,17 +78,18 @@ export default function SIPCalculator() {
               <Input
                 id="monthlyInvestment"
                 type="number"
-                placeholder="e.g. 100000"
+                placeholder="e.g. 1000"
+                defaultValue={1000}
                 className="bg-white dark:bg-zinc-800"
-                onChange={(e) => setMonthlyInvestment(+e.target.value)}
+                onChange={(e) => onMonthlyInvestmentChange(+e.target.value)}
               />
             </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="space-y-2 w-full">
-                <Label htmlFor="rate">Inflation Rate (%)</Label>
+                <Label htmlFor="rate">CAGR (%)</Label>
                 <div className="flex items-center justify-center gap-2">
-                <Slider defaultValue={[12]} max={100} step={1}  value={rate} onValueChange={(val) => setRate(val)}/>
+                <Slider defaultValue={[12]} max={100} step={1}  value={rate} onValueChange={(val) => onRateChange(val)}/>
                   <p className="font-semibold">{rate}%</p>
                   </div>
 
@@ -76,7 +98,7 @@ export default function SIPCalculator() {
               <div className="space-y-2 w-full">
                 <Label htmlFor="years">Duration (Years)</Label>
                 <div className="flex items-center justify-center gap-2">
-                <Slider defaultValue={[10]} max={100} step={1}  value={years} onValueChange={(val) => setYears(val)}/>
+                <Slider defaultValue={[10]} max={100} step={1}  value={years} onValueChange={(val) => onDurationChange(val)}/>
                   <p className="font-semibold">{years}y</p>
                   </div>
 
@@ -85,7 +107,7 @@ export default function SIPCalculator() {
           </div>
 
           <Button
-            onClick={() => calculate(rate[0], years[0], monthlyInvestment, initialInvestment)}
+            onClick={() => calculate()}
             className="w-full font-semibold cursor-pointer my-4"
           >
             Calculate
@@ -106,14 +128,14 @@ export default function SIPCalculator() {
                 </p>
                 <p>
                   <span className="font-semibold">Monthly Investment:</span>{" "}
-                  ₹{monthlyInvestment}
+                  ₹{monthlyInvestment * 12 * years[0]}
                 </p>
                 <p>
                   <span className="font-semibold">Duration:</span> {years}{" "}
                   year{years[0] > 1 ? "s" : ""}
                 </p>
                 <p>
-                  <span className="font-semibold">Rate:</span> {rate}{"% "}
+                  <span className="font-semibold">CAGR:</span> {rate}{"% "}
                 </p>
                 <p>
                   <span className="font-semibold">Total Investment:</span>{" "}
@@ -125,7 +147,7 @@ export default function SIPCalculator() {
                 </p>
                 <p>
                   <span className="font-semibold">Actual Returns:</span>{" "}
-                  ₹{(returns - (initialInvestment + monthlyInvestment * years[0] * 12)).toFixed(2)}
+                  ₹{(returns - (initialInvestment + (monthlyInvestment * years[0] * 12))).toFixed(2)}
                 </p>
               </div>
             </div>

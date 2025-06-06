@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -13,7 +13,7 @@ export default function InflationCalculator() {
 
   const router = useRouter();
 
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState(1000);
   const [rate, setRate] = useState([6]);
   const [years, setYears] = useState([10]);
   const [result, setResult] = useState<number | null>(null);
@@ -25,16 +25,35 @@ export default function InflationCalculator() {
     setDifference(inflationAdjusted - amount);
   };
 
+  const onAmountChange = (updatedValue: number) => {
+    setAmount(updatedValue)
+  }
+
+
+  const onRateChange = (updatedValue: number[]) => {
+    setRate(updatedValue)
+  }
+
+
+  const onDurationChange = (updatedValue: number[]) => {
+    setYears(updatedValue)
+  }
+
+  useEffect(() => {
+    calculate()
+  }, [amount, rate, years])
+
+
   return (
     <div className="flex flex-col items-center justify-center w-full h-full lg:p-14 p-2">
       <div className="w-full md:w-1/2">
         <Card className="w-full p-8">
-        <div className="flex items-center justify-between">
-          <Button onClick={() => router.back()} className="rounded-full w-10 h-10 cursor-pointer"><ArrowLeft /></Button>
-          <h2 className="text-2xl font-bold text-center">
-            Value Depreciation Calculator
-          </h2>
-          <div></div>
+          <div className="flex items-center justify-between">
+            <Button onClick={() => router.back()} className="rounded-full w-10 h-10 cursor-pointer"><ArrowLeft /></Button>
+            <h2 className="text-2xl font-bold text-center">
+              Value Depreciation Calculator
+            </h2>
+            <div></div>
           </div>
 
           <div className="space-y-4">
@@ -43,9 +62,10 @@ export default function InflationCalculator() {
               <Input
                 id="amount"
                 type="number"
-                placeholder="e.g. 100000"
+                placeholder="e.g. 1000"
+                defaultValue={1000}
                 className="bg-white dark:bg-zinc-800"
-                onChange={(e) => setAmount(+e.target.value)}
+                onChange={(e) => onAmountChange(+e.target.value)}
               />
             </div>
 
@@ -53,18 +73,18 @@ export default function InflationCalculator() {
               <div className="space-y-2 w-full">
                 <Label htmlFor="rate">Inflation Rate (%)</Label>
                 <div className="flex items-center justify-center gap-2">
-                <Slider defaultValue={[12]} max={100} step={1}  value={rate} onValueChange={(val) => setRate(val)}/>
+                  <Slider defaultValue={[12]} max={100} step={1} value={rate} onValueChange={(val) => onRateChange(val)} />
                   <p className="font-semibold">{rate}%</p>
-                  </div>
+                </div>
 
 
               </div>
               <div className="space-y-2 w-full">
                 <Label htmlFor="years">Duration (Years)</Label>
                 <div className="flex items-center justify-center gap-2">
-                <Slider defaultValue={[10]} max={100} step={1}  value={years} onValueChange={(val) => setYears(val)}/>
+                  <Slider defaultValue={[10]} max={100} step={1} value={years} onValueChange={(val) => onDurationChange(val)} />
                   <p className="font-semibold">{years}y</p>
-                  </div>
+                </div>
 
               </div>
             </div>
@@ -95,7 +115,7 @@ export default function InflationCalculator() {
                   ₹{result.toFixed(2)}
                 </p>
                 <p>
-                  <span className="font-semibold">Inflation Rate:</span> {rate}{"% "}  
+                  <span className="font-semibold">Inflation Rate:</span> {rate}{"% "}
                 </p>
                 <p>
                   <span className="font-semibold">Duration:</span> {years}{" "}
