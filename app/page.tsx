@@ -2,8 +2,9 @@
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowRightIcon } from "lucide-react";
+import { ArrowRightIcon, Code2Icon } from "lucide-react";
 import { Github, Twitter, Linkedin } from "lucide-react";
+import Image from "next/image";
 
 const calculators = [
   { title: "Inflation Calculator", description: "See future inflation adjusted value of the current amount", href: "/calculators/inflation" },
@@ -18,29 +19,43 @@ const calculators = [
 export default function CalculatorsHome() {
   return (
     <div className="w-full">
-      <div className="flex flex-col items-center justify-center gap-2 mb-10 bg-sky-700 px-2 py-14 text-white">
+      <div className="flex flex-col items-center justify-center gap-2 mb-10 bg-sky-700 px-5 py-10 text-white">
+        <Image src={"/finance.svg"} alt="Header image" width={200} height={200} />
         <h1 className="text-3xl sm:text-4xl font-bold text-center">
           Findocalc
         </h1>
-        <p className="text-lg text-center">Personal Finance Calculator Collection developed by Gopalakrishnan (@gobeecode)</p>
+        <p className="text-lg text-center">Opensource personal finance calculators developed by <a
+          href="http://linkedin.com/in/gobeecode"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-semibold relative group px-0 py-1"
+        >
+          Gopalakrishnan (@gobeecode).
+          <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 ease-in-out group-hover:w-full"></span>
+        </a>
+        </p>
         <div className="flex gap-4 mt-2">
           <a href="https://github.com/gobeecode" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-            <Github className="w-10 h-10 " />
+            <Github className="w-8 h-8 " />
           </a>
           <a href="https://twitter.com/gobeecode" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-            <Twitter className="w-10 h-10" />
+            <Twitter className="w-8 h-8" />
           </a>
           <a href="https://linkedin.com/in/gobeecode" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <Linkedin className="w-10 h-10 " />
+            <Linkedin className="w-8 h-8 " />
           </a>
         </div>
+        <p className="text-white">If you like my work, consider supporting me!</p>
+        <a href="https://razorpay.me/@gobeecode" target="_blank" className="mt-2">
+          <Button className="cursor-pointer bg-yellow-400 text-gray-800 hover:bg-yellow-400"><Code2Icon /> Support Development</Button>
+        </a>
       </div>
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="mx-auto px-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {calculators.map((calc, idx) => (
             <Card
               key={idx}
-              className="hover:shadow-lg transition-shadow duration-300 border border-gray-200 dark:border-gray-700 rounded-xl"
+              className="border border-gray-200 dark:border-gray-700 rounded-xl"
             >
               <CardTitle className="px-6 space-y-2">
                 <h2 className="text-xl font-semibold text-gray-800 dark:text-white">
