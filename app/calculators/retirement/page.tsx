@@ -98,12 +98,11 @@ export default function RetirementCalculator() {
     <div className="flex flex-col items-center justify-start w-full h-full lg:p-14 p-2">
       <div className="w-full md:w-1/2">
         <Card className="w-full p-8">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-start gap-3">
             <Button onClick={() => router.back()} className="rounded-full w-10 h-10 cursor-pointer bg-sky-700 hover:bg-sky-800">
               <ArrowLeft />
             </Button>
             <h2 className="text-2xl font-bold text-center text-sky-700">Retirement Calculator</h2>
-            <div></div>
           </div>
 
           <div className="space-y-4 mt-4">

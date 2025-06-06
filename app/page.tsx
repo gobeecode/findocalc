@@ -19,8 +19,8 @@ const calculators = [
 export default function CalculatorsHome() {
   return (
     <div className="w-full">
-      <div className=" flex flex-col items-center justify-center gap-2 bg-sky-700 text-white w-full">
-      <div className=" w-full sm:w-1/2 md:w-1/3 lg:w-1/4 text-center flex flex-col items-center justify-center gap-2 mb-10 px-5 py-10">
+      <div className=" flex flex-col items-center justify-center gap-2 bg-sky-700 text-white w-full mb-10">
+      <div className=" w-full sm:w-1/2 md:w-1/3 lg:w-1/4 text-center flex flex-col items-center justify-center gap-2 px-5 py-10">
         <div className="flex flex-col items-center justify-center gap-1">
         <Image src={"./favicon.svg"} alt="Logo image" width={100} height={100} /> 
         <h1 className="text-3xl sm:text-4xl font-bold text-center">
