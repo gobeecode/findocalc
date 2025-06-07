@@ -2,7 +2,7 @@
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowRightIcon, Code2Icon } from "lucide-react";
+import { ArrowRightIcon, Code2Icon, UserIcon } from "lucide-react";
 import { Github, Twitter, Linkedin } from "lucide-react";
 import Image from "next/image";
 
@@ -49,9 +49,14 @@ export default function CalculatorsHome() {
           </a>
         </div>
         <p className="text-white">If you like my work, consider supporting me!</p>
-        <a href="https://razorpay.me/@gobeecode" target="_blank" className="mt-2">
-          <Button className="cursor-pointer bg-yellow-400 text-gray-800 hover:bg-yellow-400"><Code2Icon /> Support Me</Button>
+        <div className="flex items-center justify-center gap-2">
+        <a href="https://razorpay.me/@gobeecode" target="_blank" className="mt-2 ">
+          <Button className="cursor-pointer bg-yellow-300 text-gray-800 hover:bg-yellow-400"><Code2Icon /> Donate </Button>
         </a>
+        <a href="https://gopalakrishnan.vercel.app" target="_blank" className="mt-2">
+          <Button className="cursor-pointer border-2 border-yellow-300 text-yellow-300 bg-transparent hover:bg-transparent"><UserIcon /> About me</Button>
+        </a>
+        </div>
       </div>
       </div>
 
