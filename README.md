@@ -1,2 +1,2 @@
-# findocalc
+# zapcalc
 Collection of personal finance calculators

@@ -24,7 +24,7 @@ export default function CalculatorsHome() {
         <div className="flex flex-col items-center justify-center gap-1">
         <Image src={"./favicon.svg"} alt="Logo image" width={100} height={100} /> 
         <h1 className="text-3xl sm:text-4xl font-bold text-center">
-           Findocalc
+        Zapcalc  
         </h1>
         </div>
         <p className="text-lg text-center">Opensource personal finance calculators developed by <a
@@ -38,19 +38,19 @@ export default function CalculatorsHome() {
         </a>
         </p>
         <div className="flex items-center justify-center gap-4 mt-2">
+          <a href="https://linkedin.com/in/gobeecode" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <Linkedin className="w-8 h-8 " />
+          </a>
           <a href="https://github.com/gobeecode" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
             <Github className="w-8 h-8 " />
           </a>
           <a href="https://twitter.com/gobeecode" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
             <Twitter className="w-8 h-8" />
           </a>
-          <a href="https://linkedin.com/in/gobeecode" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <Linkedin className="w-8 h-8 " />
-          </a>
         </div>
         <p className="text-white">If you like my work, consider supporting me!</p>
         <a href="https://razorpay.me/@gobeecode" target="_blank" className="mt-2">
-          <Button className="cursor-pointer bg-yellow-400 text-gray-800 hover:bg-yellow-400"><Code2Icon /> Support Development</Button>
+          <Button className="cursor-pointer bg-yellow-400 text-gray-800 hover:bg-yellow-400"><Code2Icon /> Support Me</Button>
         </a>
       </div>
       </div>

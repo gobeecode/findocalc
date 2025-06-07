@@ -36,21 +36,22 @@ export default function RetirementCalculator() {
 
   const calculate = () => {
     const yearsToRetire = retirementAge[0] - currentAge[0];
-    const yearsInRetirement = 85 - retirementAge[0];
+    const yearsInRetirement = 100 - retirementAge[0];
     const inflation = inflationRate[0] / 100;
     const nominalReturn = postRetirementReturnRate[0] / 100;
     const realReturn = (1 + nominalReturn) / (1 + inflation) - 1;
-
-    // Project future monthly expense
+  
+    // Project future monthly expense at retirement age
     const inflatedMonthlyExpense = monthlyExpense * Math.pow(1 + inflation, yearsToRetire);
     const annualExpense = inflatedMonthlyExpense * 12;
-
+  
+    // Calculate required corpus using present value of an annuity formula
     const corpus = annualExpense * ((1 - Math.pow(1 + realReturn, -yearsInRetirement)) / realReturn);
-
+  
     setFutureMonthlyExpense(inflatedMonthlyExpense);
     setRequiredCorpus(corpus);
-
-    // Build expense growth data
+  
+    // Build expense growth data until retirement
     const expenseData = [];
     for (let i = 0; i <= yearsToRetire; i++) {
       const year = currentAge[0] + i;
@@ -58,36 +59,35 @@ export default function RetirementCalculator() {
       expenseData.push({ age: year, "Monthly Expense (₹)": Math.round(monthly) });
     }
     setExpenseGrowthData(expenseData);
-
-    // Corpus drawdown simulation
+  
+    // Corpus drawdown simulation after retirement
     const drawdownData = [];
     let balance = corpus;
+    let lastCorpusAge = retirementAge[0];
+  
     for (let i = 0; i <= yearsInRetirement; i++) {
       const year = retirementAge[0] + i;
-      const expense = annualExpense * Math.pow(1 + inflation, i); // ✅ Expense increases each year
+      const expense = annualExpense * Math.pow(1 + inflation, i); // Adjust for inflation
       const interest = balance * nominalReturn;
       balance = balance + interest - expense;
-
+  
       drawdownData.push({
         age: year,
         "Corpus Balance (₹)": Math.max(balance, 0),
         "Annual Expense (₹)": Math.round(expense),
       });
-
-      if (balance <= 0) break;
+  
+      if (balance > 0) {
+        lastCorpusAge = year;
+      } else {
+        break;
+      }
     }
+  
     setCorpusDrawdownData(drawdownData);
-
-    if (annualExpense > corpus * nominalReturn) {
-      const years =
-        Math.log(annualExpense / (annualExpense - corpus * nominalReturn)) /
-        Math.log(1 + nominalReturn);
-      setYearsCorpusLasts(parseFloat(years.toFixed(1)));
-    } else {
-      setYearsCorpusLasts(Infinity);
-    }
+    setYearsCorpusLasts(lastCorpusAge - retirementAge[0]);
   };
-
+  
 
   useEffect(() => {
     calculate();

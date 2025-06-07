@@ -55,7 +55,7 @@ export default function GoalBasedInvestmentCalculator() {
             setChartData(data);
         }
 
-        const inflationAdjusted = (goalAmount / Math.pow(1 + expectedReturn[0] / 100, years[0]));
+        const inflationAdjusted = (goalAmount * Math.pow(1 + expectedReturn[0] / 100, years[0]));
         setInflationAdjustedGoalAmount(inflationAdjusted)
     };
 
